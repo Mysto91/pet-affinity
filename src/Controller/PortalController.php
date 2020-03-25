@@ -18,7 +18,7 @@ class PortalController extends AbstractController
     }
 
     /**
-     * @Route("/", name="home")
+     * @Route("/home", name="home")
      */
     public function home(){
         return $this->render('portal/home.html.twig', [
