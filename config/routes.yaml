@@ -1,3 +1,11 @@
 home:
     path: /home
     controller: App\Controller\PortalController::home
+
+features:
+    path: /features
+    controller: App\Controller\PortalController::features
+
+about:
+    path: /about
+    controller: App\Controller\PortalController::about
