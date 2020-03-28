@@ -19,12 +19,12 @@ class Feature
     /**
      * @ORM\Column(type="string", length=20)
      */
-    private $name;
+    private $Name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $description;
+    private $Description;
 
     /**
      * @ORM\Column(type="datetime")
