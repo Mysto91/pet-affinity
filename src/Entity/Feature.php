@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FeatureRepository")
@@ -18,11 +19,19 @@ class Feature
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Assert\Length(
+     *          min=5,
+     *          max=20,
+     *          minMessage="Le nom doit comporter au minimum {{ limit }} caractères",
+     *          maxMessage="Le nom doit composer au maximum {{ limit }} caractères")
+     * @Assert\NotBlank()
      */
     private $Name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=5, max=255)
+     * @Assert\NotBlank()
      */
     private $Description;
 

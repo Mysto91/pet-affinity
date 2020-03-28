@@ -6,29 +6,31 @@
 
 {% block body %}
 
-    <h1>Création d'une feature</h1>
+    <div>
+        <h1>Création d'une feature</h1>
 
-    {{form_start(formFeature)}}
+        {{form_start(formFeature)}}
 
-    {{form_row(formFeature.name,
-        {'attr' : {
-            'placeholder': 'Nom de la feature'
-        }}
-    )}}
+        {{form_row(formFeature.name,
+            {'attr' : {
+                'placeholder': 'Nom de la feature'
+            }}
+        )}}
 
-    {{form_row(formFeature.description,
-        {'attr' : {
-            'placeholder': 'Description de la feature'
-        }}
-    )}}
+        {{form_row(formFeature.description,
+            {'attr' : {
+                'placeholder': 'Description de la feature'
+            }}
+        )}}
 
-    <button type="submit" class="btn btn-success">
-        {% if editMode %}
-            Enregistrer
-        {% else %}
-            Ajouter la feature
-        {% endif %}
-    </button>
+        <button type="submit" class="btn btn-success">
+            {% if editMode %}
+                Enregistrer
+            {% else %}
+                Ajouter la feature
+            {% endif %}
+        </button>
+    </div>
 
     {{form_end(formFeature)}}
 
