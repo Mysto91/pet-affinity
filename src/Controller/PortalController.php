@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Feature;
+use App\Form\FeatureType;
 use App\Repository\FeatureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -48,20 +49,22 @@ class PortalController extends AbstractController
 
     /**
      * @Route("/feature/new", name="feature_create")
+     * @Route("/feature/{id}/edit", name="feature_edit")
      */
-    public function createFeature(Request $request, EntityManagerInterface $manager)
+    public function createFeature(Feature $feature = null, Request $request, EntityManagerInterface $manager)
     {
-        $feature = new Feature();
+        if (!$feature) {
+            $feature = new Feature();
+        }
 
-        $form = $this->createFormBuilder($feature)
-            ->add('name')
-            ->add('description')
-            ->getForm();
+        $form = $this->createForm(FeatureType::class, $feature);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $feature->setCreatedAt(new \DateTime());
+            if ($feature->getId()) {
+                $feature->setCreatedAt(new \DateTime());
+            }
             $manager->persist($feature);
             $manager->flush();
 
@@ -74,6 +77,7 @@ class PortalController extends AbstractController
             'feature/create.html.twig',
             [
                 'formFeature' => $form->createView(),
+                'editMode' => $feature->getId() !== null,
             ]
         );
     }

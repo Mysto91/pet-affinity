@@ -22,7 +22,13 @@
         }}
     )}}
 
-    <button type="submit" class="btn btn-success">Enregistrer</button>
+    <button type="submit" class="btn btn-success">
+        {% if editMode %}
+            Enregistrer
+        {% else %}
+            Ajouter la feature
+        {% endif %}
+    </button>
 
     {{form_end(formFeature)}}
 
