@@ -44,9 +44,8 @@ class PortalController extends AbstractController
     /**
      * @Route("/feature/{id}", name="feature")
      */
-    public function feature(FeatureRepository $repo, $id)
+    public function feature(Feature $feature)
     {
-        $feature = $repo->find($id);
         return $this->render('portal/feature.html.twig', [
             'feature' => $feature,
         ]);
