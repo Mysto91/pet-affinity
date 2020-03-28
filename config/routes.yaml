@@ -6,6 +6,10 @@ features:
     path: /features
     controller: App\Controller\PortalController::features
 
+feature:
+    path: /feature/{id}
+    controller: App\Controller\PortalController::feature
+
 about:
     path: /about
     controller: App\Controller\PortalController::about

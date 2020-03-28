@@ -12,7 +12,7 @@
     <h1>Features</h1>
     <div class="list-group">
         {% for feature in features %}
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                <a href="{{ path('feature', {id: feature.id}) }}" class="list-group-item list-group-item-action flex-column align-items-start active">
                     <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{ feature.name }}</h5>
                     <small>created at : {{feature.createdAt | date('d/m/Y')}}</small>
