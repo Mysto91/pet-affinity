@@ -13,7 +13,7 @@ class FeatureFixtures extends Fixture
         for ($i = 0; $i < 10; $i++) {
             $feature = new Feature();
             $feature->setName("Feature ".$i)
-                    ->setDescription("<p>Description n°$i</p>")
+                    ->setDescription("Description n°$i")
                     ->setCreatedAt(new \DateTime());
 
             $manager->persist($feature);

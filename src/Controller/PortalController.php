@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Feature;
 
 class PortalController extends AbstractController
 {
@@ -22,8 +23,11 @@ class PortalController extends AbstractController
      */
     public function features()
     {
+        $repo = $this->getDoctrine()->getRepository(Feature::class);
+        $feature_array = $repo->findAll();
         return $this->render('portal/features.html.twig', [
             'controller_name' => 'PortalController',
+            'features' => $feature_array,
         ]);
     }
 
