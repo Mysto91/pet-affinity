@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formFeature 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Création{% endblock %}
+
+{% block body %}
+
+    <h1>Création d'une feature</h1>
+
+    {{form_start(formFeature)}}
+
+    {{form_row(formFeature.name,
+        {'attr' : {
+            'placeholder': 'Nom de la feature'
+        }}
+    )}}
+
+    {{form_row(formFeature.description,
+        {'attr' : {
+            'placeholder': 'Description de la feature'
+        }}
+    )}}
+
+    <button type="submit" class="btn btn-success">Enregistrer</button>
+
+    {{form_end(formFeature)}}
+
+{% endblock %}
