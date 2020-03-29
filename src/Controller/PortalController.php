@@ -95,7 +95,7 @@ class PortalController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($feature->getId()) {
+            if (!$feature->exist()) {
                 $feature->setCreatedAt(new \DateTime());
             }
             $manager->persist($feature);

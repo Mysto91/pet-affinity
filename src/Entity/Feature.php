@@ -18,10 +18,10 @@ class Feature
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=50)
      * @Assert\Length(
      *          min=5,
-     *          max=20,
+     *          max=50,
      *          minMessage="Le nom doit comporter au minimum {{ limit }} caractères",
      *          maxMessage="Le nom doit composer au maximum {{ limit }} caractères")
      * @Assert\NotBlank()
@@ -79,5 +79,10 @@ class Feature
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    public function exist()
+    {
+        return $this->getId() != null;
     }
 }
