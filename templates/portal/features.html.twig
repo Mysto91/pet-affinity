@@ -8,19 +8,35 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
+<div class="table table-hover example-wrapper">
     <h1>Features</h1>
     <div class="list-group">
-        {% for feature in features %}
-                <a href="{{ path('feature', {id: feature.id}) }}/edit" class="list-group-item list-group-item-action flex-column align-items-start active">
-                    <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">{{ feature.name }}</h5>
-                    <small>created at : {{feature.createdAt | date('d/m/Y')}}</small>
-                    </div>
-                    <p class="mb-1">{{ feature.description }}</p>
-                    <small></small>
-                </a> 
-        {% endfor %}
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Date de création</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for feature in features %}
+                    <tr scope="col">
+                        <a href="{{ path('feature', {id: feature.id}) }}/edit">
+                            <td>
+                                <a href="{{ path('feature', {id: feature.id}) }}/edit">
+                                    {{ feature.id }}
+                                </a>                            
+                            </td>
+                            <td>{{ feature.name }}</td>
+                            <td>{{ feature.description }}</td>
+                            <td>{{ feature.createdAt | date("d/m/Y") }}</td>
+                        </a>
+                    </tr> 
+                {% endfor %}
+            </tbody>
+        <table>
     </div>
 </div>
 {% endblock %}

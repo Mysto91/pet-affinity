@@ -6,9 +6,13 @@
         {% block stylesheets %}
             <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
         {% endblock %}
+        <style>
+            .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+            .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        </style>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="{{path('home')}}">MyApp</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
