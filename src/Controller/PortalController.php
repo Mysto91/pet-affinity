@@ -6,7 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Feature;
+use App\Entity\User;
 use App\Form\FeatureType;
+use App\Form\UserType;
 use App\Repository\FeatureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -45,6 +47,37 @@ class PortalController extends AbstractController
         return $this->render('portal/about.html.twig', [
             'controller_name' => 'PortalController',
         ]);
+    }
+
+    /**
+     * @Route("/user/new", name="user_create")
+     * @Route("/user/{id}/edit", name="user_edit")
+     */
+    public function createUser(User $user = null, Request $request, EntityManagerInterface $manager)
+    {
+        if (!$user) {
+            $user = new User();
+        }
+
+        $form = $this->createForm(UserType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (!$user->exist()) {
+                $user->setCreatedAt(new \DateTime());
+            }
+            $manager->persist($user);
+            $manager->flush();
+        }
+
+        return $this->render(
+            'user/create.html.twig',
+            [
+                'formUser' => $form->createView(),
+                'editMode' => $user->getId() !== null,
+            ]
+        );
     }
 
     /**

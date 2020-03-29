@@ -37,7 +37,7 @@ class User
         return $this->id;
     }
 
-    private function getUsername(): ?string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
@@ -47,9 +47,9 @@ class User
         $this->username = $username;
     }
 
-    private function getPassword(): ?string
+    public function getPassword(): ?string
     {
-        return $this->getPassword;
+        return $this->password;
     }
 
     public function setPassword($password)
@@ -65,5 +65,10 @@ class User
     public function setCreatedAt(\DateTimeInterface $createdAt)
     {
         $this->createdAt = $createdAt;
+    }
+
+    public function exist()
+    {
+        return $this->getId() != null;
     }
 }

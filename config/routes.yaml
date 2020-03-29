@@ -13,3 +13,7 @@ feature:
 about:
     path: /about
     controller: App\Controller\PortalController::about
+
+user :
+    path: /user/{id}
+    controller: App\Controller\PortalController::createUser

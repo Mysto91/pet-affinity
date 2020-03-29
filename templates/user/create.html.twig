@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formUser 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Création User{% endblock %}
+
+{% block body %}
+
+    <div class="example-wrapper">
+        {% if editMode %}
+            <h1>Modification d'un utilisateur</h1>
+        {% else %}
+            <h1>Création d'un utilisateur</h1>
+        {% endif %}
+
+        {{form_start(formUser)}}
+
+            {{form_row(formUser.username,
+                {'attr' : {
+                    'placeholder': 'Nom d\'utilisateur'
+                }}
+            )}}
+
+            {{form_row(formUser.password,
+                {'attr' : {
+                    'placeholder': 'Mot de passe'
+                }}
+            )}}
+
+            <button type="submit" class="btn btn-success">
+                {% if editMode %}
+                    Enregistrer
+                {% else %}
+                    Ajouter la feature
+                {% endif %}
+            </button>
+            
+        {{form_end(formUser)}}
+    </div>
+
+{% endblock %}
