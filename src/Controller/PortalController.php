@@ -11,6 +11,8 @@ use App\Form\FeatureType;
 use App\Form\UserType;
 use App\Repository\FeatureRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Asset\Package;
+use Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -21,9 +23,12 @@ class PortalController extends AbstractController
      */
     public function home()
     {
+        $package = new Package(new EmptyVersionStrategy());
+
         return $this->render('portal/home.html.twig', [
             'username' => 'Admin',
-            'url' => '/home'
+            'url' => '/home',
+            'url_home_img' => $package->getUrl('images/home.jpg'),
         ]);
     }
 
