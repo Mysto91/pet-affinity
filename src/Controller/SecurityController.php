@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\LoginType;
 use App\Form\RegistrationType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,12 +33,32 @@ class SecurityController extends AbstractController
 
             $manager->persist($user);
             $manager->flush();
+
+            return $this->redirectToRoute('security_login');
         }
 
         return $this->render(
             'security/registration.html.twig',
             [
                 'form' => $form->createView()
+            ]
+        );
+    }
+
+    /**
+     * @Route("/connection", name="security_login")
+     */
+    public function login()
+    {
+        $user = new User;
+        $form = $this->createForm(LoginType::class, $user);
+
+        //$form->handleRequest($request);
+
+        return $this->render(
+            'security/login.html.twig',
+            [
+                'formLogin' => $form->createView()
             ]
         );
     }
