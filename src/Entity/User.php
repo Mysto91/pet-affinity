@@ -32,6 +32,11 @@ class User
      */
     private $createdAt;
 
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $email;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -55,6 +60,16 @@ class User
     public function setPassword($password)
     {
         $this->password = $password;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface
