@@ -4,9 +4,17 @@
 
 {% block body %}
     <div class="example-wrapper">
-        {{form_start(formLogin)}}
-
-        {{form_end(formLogin)}}
-        <button type="submit" class="btn btn-success">Se connecter</button>
+        <h1>Connexion</h1>
+        <form action="{{ path('security_login') }}" method="post">
+            <div class="form-group">Email
+                <input type="text" id="email" class="form-control" required name="_username" placeholder="email">
+            </div>
+            <div class="form-group">Mot de passe
+                <input type="password" id="password" class="form-control" required name="_password" placeholder="password">
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-success" value="Se connecter">
+            </div>
+        </form>
     </div>
 {% endblock %}

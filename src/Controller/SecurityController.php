@@ -46,20 +46,10 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/connection", name="security_login")
+     * @Route("/login", name="security_login")
      */
     public function login()
     {
-        $user = new User;
-        $form = $this->createForm(LoginType::class, $user);
-
-        //$form->handleRequest($request);
-
-        return $this->render(
-            'security/login.html.twig',
-            [
-                'formLogin' => $form->createView()
-            ]
-        );
+        return $this->render('security/login.html.twig');
     }
 }

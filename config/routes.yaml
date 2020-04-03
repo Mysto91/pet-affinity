@@ -17,7 +17,3 @@ about:
 user:
     path: /user/{id}
     controller: App\Controller\PortalController::createUser
-
-login:
-    path: /login
-    controller: App\Controller\SecurityController::login
