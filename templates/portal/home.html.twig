@@ -4,10 +4,12 @@
 
 {% block body %}
     <div>
-        <img src="{{ url_home_img }}" class = "image-strip" />
+        <img src="{{ url_home_img }}" class = "image-strip center" />
     </div>
 
-    <div class="example-wrapper img-fluid" alt="Responsive image">
-        <h1>Welcome {{ username }}</h1>
+    <div class="jumbotron example-wrapper img-fluid" alt="Responsive image">
+        <h1 class="display-3">Welcome {{ username }}</h1>
+        <p class="lead">The aim of this project is to learn php symfony framework</p>
+        <hr class="my-4">
     </div>
 {% endblock %}

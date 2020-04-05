@@ -26,9 +26,9 @@ class PortalController extends AbstractController
         $package = new Package(new EmptyVersionStrategy());
 
         return $this->render('portal/home.html.twig', [
-            'username' => 'Admin',
+            'username' => 'User',
             'url' => '/home',
-            'url_home_img' => $package->getUrl('images/home.jpg'),
+            'url_home_img' => $package->getUrl('images/symfony-5.jpg'),
         ]);
     }
 
