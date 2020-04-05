@@ -106,7 +106,7 @@ class PortalController extends AbstractController
             $manager->persist($feature);
             $manager->flush();
 
-            return $this->redirectToRoute('feature', [
+            return $this->redirectToRoute('features', [
                 'id' => $feature->getId()
             ]);
         }
