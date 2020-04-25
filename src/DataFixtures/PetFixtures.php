@@ -11,15 +11,30 @@ class PetFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $faker = Factory::create();
-        
-        for ($i = 0; $i < 10; $i++) {
-            $pet = new Pet();
-            $pet->setName("Feature ".$i)
-                    ->setDescription("Description n°$i")
-                    ;
+        $faker = Factory::create('FR_fr');
 
-            $manager->persist($feature);
+        $genderType = array(
+            'male',
+            'female'
+        );
+
+        $colors = array(
+            'brown',
+            'black',
+            'white',
+            'grey'
+        );
+
+        for ($i = 0; $i < 100; $i++) {
+            $pet = new Pet();
+            $pet->setName($faker->words(3, true))
+                ->setDescription($faker->sentences(3, true))
+                ->setGender($faker->randomElement($genderType))
+                ->setAge($faker->numberBetween(1, 20))
+                ->setColor($faker->randomElement($colors))
+                ->setSize($faker->numberBetween(20, 100));
+
+            $manager->persist($pet);
         }
 
         $manager->flush();

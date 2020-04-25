@@ -10,15 +10,5 @@ class FeatureFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < 10; $i++) {
-            $feature = new Feature();
-            $feature->setName("Feature ".$i)
-                    ->setDescription("Description n°$i")
-                    ->setCreatedAt(new \DateTime());
-
-            $manager->persist($feature);
-        }
-
-        $manager->flush();
     }
 }

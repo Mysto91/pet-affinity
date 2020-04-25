@@ -10,15 +10,5 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        for ($i = 1; $i < 10; $i++) {
-            $user = new User();
-
-            $user->setUsername("user" . $i);
-            $user->setPassword("password");
-            $user->setCreatedAt(new \DateTime());
-
-            $manager->persist($user);
-        }
-        $manager->flush();
     }
 }
