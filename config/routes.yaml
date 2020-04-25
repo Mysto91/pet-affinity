@@ -17,3 +17,6 @@ about:
 user:
     path: /user/{id}
     controller: App\Controller\PortalController::createUser
+
+logout:
+    path: /logout
