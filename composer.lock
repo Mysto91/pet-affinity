@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "79c5b46d4a18b1bd1a06bbbeced916fe",
+    "content-hash": "7e7d6506076194fd38363e0848b35bdb",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -7321,6 +7321,50 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "edwindayot/faker-provider-animals",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EdwinDayot/Faker-Provider-Animals.git",
+                "reference": "4cc00fc2ef24f0a3d57769c3d399c9ecb646f9e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EdwinDayot/Faker-Provider-Animals/zipball/4cc00fc2ef24f0a3d57769c3d399c9ecb646f9e3",
+                "reference": "4cc00fc2ef24f0a3d57769c3d399c9ecb646f9e3",
+                "shasum": ""
+            },
+            "require": {
+                "fzaninotto/faker": "^1.6",
+                "php": "^5.3.3|^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "FakerProviderAnimals\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Edwin Dayot"
+                }
+            ],
+            "description": "Animals names provider for Faker.",
+            "keywords": [
+                "animals",
+                "faker",
+                "provider"
+            ],
+            "time": "2017-06-23T12:06:02+00:00"
+        },
         {
             "name": "fzaninotto/faker",
             "version": "v1.9.1",

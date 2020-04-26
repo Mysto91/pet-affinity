@@ -90,6 +90,9 @@
     "doctrine/reflection": {
         "version": "1.2.0"
     },
+    "edwindayot/faker-provider-animals": {
+        "version": "1.0.3"
+    },
     "egulias/email-validator": {
         "version": "2.1.17"
     },

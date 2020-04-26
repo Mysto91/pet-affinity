@@ -33,6 +33,7 @@
         "thomaspark/bootswatch": "^4.4"
     },
     "require-dev": {
+        "edwindayot/faker-provider-animals": "^1.0",
         "fzaninotto/faker": "^1.9",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",

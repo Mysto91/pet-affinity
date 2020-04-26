@@ -13,6 +13,8 @@ class PetFixtures extends Fixture
     {
         $faker = Factory::create('fr_FR');
 
+        //$faker->addProvider(new \Faker\prov($faker));
+
         $genderType = array(
             'male',
             'female'
