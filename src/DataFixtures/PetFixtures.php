@@ -32,7 +32,7 @@ class PetFixtures extends Fixture
         for ($i = 0; $i < 100; $i++) {
             $pet = new Pet();
             $pet->setName($faker->randomElement($animals))
-                ->setDescription($faker->sentences(3, true))
+                ->setDescription('found in '. $faker->departmentName)
                 ->setGender($faker->randomElement($genderType))
                 ->setAge($faker->numberBetween(1, 20))
                 ->setColor($faker->randomElement($colors))

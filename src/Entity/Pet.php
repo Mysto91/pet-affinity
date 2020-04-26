@@ -51,12 +51,12 @@ class Pet
      */
     private $age;
 
-    public function getRace(): ?int
+    public function getidRace(): ?int
     {
         return $this->idRace;
     }
 
-    public function setRace(int $idRace): self
+    public function setidRace(int $idRace): self
     {
         $this->idRace = $idRace;
 
