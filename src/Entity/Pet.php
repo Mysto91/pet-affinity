@@ -37,14 +37,31 @@ class Pet
     private $color;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="float", nullable=true)
      */
     private $size;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $idRace;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $age;
+
+    public function getRace(): ?int
+    {
+        return $this->idRace;
+    }
+
+    public function setRace(int $idRace): self
+    {
+        $this->idRace = $idRace;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -99,12 +116,12 @@ class Pet
         return $this;
     }
 
-    public function getSize(): ?string
+    public function getSize(): ?float
     {
         return $this->size;
     }
 
-    public function setSize(string $size): self
+    public function setSize(float $size): self
     {
         $this->size = $size;
 

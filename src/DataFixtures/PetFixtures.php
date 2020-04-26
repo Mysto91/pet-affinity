@@ -11,7 +11,7 @@ class PetFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $faker = Factory::create('FR_fr');
+        $faker = Factory::create('fr_FR');
 
         $genderType = array(
             'male',
@@ -32,7 +32,8 @@ class PetFixtures extends Fixture
                 ->setGender($faker->randomElement($genderType))
                 ->setAge($faker->numberBetween(1, 20))
                 ->setColor($faker->randomElement($colors))
-                ->setSize($faker->numberBetween(20, 100));
+                ->setSize($faker->numberBetween(20, 100))
+                ->setRace($faker->numberBetween(1, 30));
 
             $manager->persist($pet);
         }
