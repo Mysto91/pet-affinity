@@ -51,6 +51,12 @@ class Pet
      */
     private $age;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\TypePet", inversedBy="pets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $typePet;
+
     public function getidRace(): ?int
     {
         return $this->idRace;
@@ -136,6 +142,18 @@ class Pet
     public function setAge(?int $age): self
     {
         $this->age = $age;
+
+        return $this;
+    }
+
+    public function getTypePet(): ?TypePet
+    {
+        return $this->typePet;
+    }
+
+    public function setTypePet(?TypePet $typePet): self
+    {
+        $this->typePet = $typePet;
 
         return $this;
     }

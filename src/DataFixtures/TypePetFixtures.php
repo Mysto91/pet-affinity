@@ -11,20 +11,5 @@ class TypePetFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $faker = Factory::create('fr_FR');
-
-        $type_array = array(
-            '1' => 'dog',
-            '2' => 'cat',
-        );
-
-        foreach ($type_array as $id => $type) {
-            $typePet = new TypePet();
-            $typePet->setId((int) $id)
-                ->setName($type);
-            $manager->persist($typePet);
-        }
-
-        $manager->flush();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Pet;
+use APp\Entity\TypePet;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
@@ -29,17 +30,30 @@ class PetFixtures extends Fixture
             'grey'
         );
 
-        for ($i = 0; $i < 100; $i++) {
-            $pet = new Pet();
-            $pet->setName($faker->randomElement($animals))
-                ->setDescription('found in '. $faker->departmentName)
-                ->setGender($faker->randomElement($genderType))
-                ->setAge($faker->numberBetween(1, 20))
-                ->setColor($faker->randomElement($colors))
-                ->setSize($faker->numberBetween(20, 100))
-                ->setidRace($faker->numberBetween(1, 2));
+        $type_array = array(
+            '1' => 'dog',
+            '2' => 'cat',
+        );
 
-            $manager->persist($pet);
+        foreach ($type_array as $id => $type) {
+            $typePet = new TypePet();
+            $typePet->setId((int) $id)
+                ->setName($type);
+            $manager->persist($typePet);
+
+            for ($i = 0; $i < 25; $i++) {
+                $pet = new Pet();
+                $pet->setName($faker->randomElement($animals))
+                    ->setDescription('found in ' . $faker->departmentName)
+                    ->setGender($faker->randomElement($genderType))
+                    ->setAge($faker->numberBetween(1, 20))
+                    ->setColor($faker->randomElement($colors))
+                    ->setSize($faker->numberBetween(20, 100))
+                    ->setidRace(1)
+                    ->setTypePet($typePet);
+
+                $manager->persist($pet);
+            }
         }
 
         $manager->flush();
