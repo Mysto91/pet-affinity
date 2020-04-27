@@ -42,6 +42,7 @@ class PetRepository extends ServiceEntityRepository
     public function findAllQuery()
     {
         return $this->createQueryBuilder('p')
+                ->orderBy('p.Name','ASC')
                 ->getQuery();
     }
 
