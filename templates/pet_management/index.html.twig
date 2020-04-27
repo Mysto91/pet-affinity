@@ -12,5 +12,9 @@
     {% for pet in pets %}
          {% include 'pet_management/pet.html.twig' %}   
     {% endfor %}
+
+    <div class="pagination">
+        {{ knp_pagination_render(pets) }} 
+    </div>
 </div>
 {% endblock %}

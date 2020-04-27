@@ -37,7 +37,7 @@ class PetFixtures extends Fixture
                 ->setAge($faker->numberBetween(1, 20))
                 ->setColor($faker->randomElement($colors))
                 ->setSize($faker->numberBetween(20, 100))
-                ->setidRace($faker->numberBetween(1, 30));
+                ->setidRace($faker->numberBetween(1, 2));
 
             $manager->persist($pet);
         }

@@ -36,6 +36,15 @@ class PetRepository extends ServiceEntityRepository
     }
     */
 
+    /**
+     * @return Query
+     */
+    public function findAllQuery()
+    {
+        return $this->createQueryBuilder('p')
+                ->getQuery();
+    }
+
     /*
     public function findOneBySomeField($value): ?Pet
     {
