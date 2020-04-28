@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formPet 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Création{% endblock %}
+
+{% block body %}
+
+    <div class = "example-wrapper">
+        <h1>Create pet</h1>
+
+        {{form_start(formPet)}}
+
+        {{form_row(formPet.Name,
+            {'attr' : {
+                'placeholder': 'Nom de la feature'
+            }}
+        )}}
+
+        {{form_row(formPet.Description,
+            {'attr' : {
+                'placeholder': 'Description de la feature'
+            }}
+        )}}
+
+        {{form_row(formPet.gender,
+            {'attr' : {
+                'placeholder': ''
+            }}
+        )}}
+
+        {{form_row(formPet.color,
+            {'attr' : {
+                'placeholder': ''
+            }}
+        )}}
+
+        {{form_row(formPet.size,
+            {'attr' : {
+                'placeholder': ''
+            }}
+        )}}
+
+        {{form_row(formPet.age,
+            {'attr' : {
+                'placeholder': ''
+            }}
+        )}}
+
+        {{form_row(formPet.typePet,
+            {'attr' : {
+                'placeholder': ''
+            }}
+        )}}
+
+        <button type="submit" class="btn btn-success">
+            {% if editMode %}
+                Enregistrer
+            {% else %}
+                Ajouter la feature
+            {% endif %}
+        </button>
+        
+        {{form_end(formPet)}}
+    </div>
+
+{% endblock %}

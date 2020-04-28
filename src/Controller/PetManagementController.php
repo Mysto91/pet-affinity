@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Pet;
 use App\Entity\PetSearch;
+use App\Form\CreatePetType;
 use App\Form\SearchPetType;
 use App\Repository\PetRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -34,5 +35,39 @@ class PetManagementController extends AbstractController
             'pets' => $pets_array,
             'form_search' => $form->createView()
         ]);
+    }
+
+        /**
+     * @Route("/pet/new", name="pet_create")
+     * @Route("/pet/{id}/edit", name="pet_edit")
+     */
+    public function createPet(Pet $pet = null, Request $request, EntityManagerInterface $manager)
+    {
+        if(!$pet) {
+            $pet = new Pet();
+        }
+
+        $form = $this->createForm(CreatePetType::class, $pet);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (!$pet->exist()) {
+                $pet->setCreatedAt(new \DateTime());
+            }
+            $manager->persist($pet);
+            $manager->flush();
+
+            return $this->redirectToRoute('pet_management');
+        }
+
+        return $this->render(
+            'pet_management/create.html.twig',
+            [
+                'formPet' => $form->createView(),
+                'editMode' => $pet->getId() !== null,
+            ]
+        );
+
     }
 }

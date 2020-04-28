@@ -157,4 +157,9 @@ class Pet
 
         return $this;
     }
+
+    public function exist()
+    {
+        return $this->getId() != null;
+    }
 }
