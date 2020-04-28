@@ -42,11 +42,6 @@ class Pet
     private $size;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $idRace;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $age;
@@ -56,18 +51,6 @@ class Pet
      * @ORM\JoinColumn(nullable=false)
      */
     private $typePet;
-
-    public function getidRace(): ?int
-    {
-        return $this->idRace;
-    }
-
-    public function setidRace(int $idRace): self
-    {
-        $this->idRace = $idRace;
-
-        return $this;
-    }
 
     public function getId(): ?int
     {
