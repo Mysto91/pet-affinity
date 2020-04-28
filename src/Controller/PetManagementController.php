@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 class PetManagementController extends AbstractController
 {
     /**
-     * @Route("/pet/management", name="pet_management")
+     * @Route("/pet", name="pet_management")
      */
     public function index(PetRepository $repo, PaginatorInterface $paginator, Request $request)
     {
@@ -39,7 +39,7 @@ class PetManagementController extends AbstractController
 
         /**
      * @Route("/pet/new", name="pet_create")
-     * @Route("/pet/{id}/edit", name="pet_edit")
+     * @Route("/pet/edit/{id}", name="pet_edit")
      */
     public function createPet(Pet $pet = null, Request $request, EntityManagerInterface $manager)
     {
