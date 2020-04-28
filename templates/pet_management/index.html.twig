@@ -4,6 +4,26 @@
 
 {% block body %}
 
+<div class="jumbotron">
+    <div class="container">
+    {{ form_start(form_search) }}
+        <div class="form-row align-items-end">
+            <div class="col">
+                {{ form_row(form_search.maxSize) }}
+            </div>
+            <div class="col">
+                {{ form_row(form_search.maxAge) }}
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <button class="btn btn-primary">search</button>
+                </div>
+            </div>
+        </div>
+    {{ form_end(form_search) }}
+    </div>
+</div>
+
 <div class="example-wrapper">
     <h1>Pets</h1>
     <div class="card-columns">

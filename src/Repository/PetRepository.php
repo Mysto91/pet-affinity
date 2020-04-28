@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Pet;
+use App\Entity\PetSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -37,13 +38,28 @@ class PetRepository extends ServiceEntityRepository
     */
 
     /**
+     * @param $search
+     *
      * @return Query
      */
-    public function findAllQuery()
+    public function findAllQuery(PetSearch $search = null)
     {
-        return $this->createQueryBuilder('p')
-                ->orderBy('p.Name','ASC')
-                ->getQuery();
+        $query = $this->createQueryBuilder('p')
+            ->orderBy('p.Name', 'ASC');
+
+        if ($search->getMaxAge()) {
+            $query = $query
+                ->andWhere('p.age <= :maxage')
+                ->setParameter('maxage', $search->getMaxAge());
+        }
+
+        if ($search->getMaxSize()) {
+            $query = $query
+                ->andWhere('p.size <= :maxsize')
+                ->setParameter('maxsize', $search->getMaxSize());
+        }
+
+        return $query->getQuery();
     }
 
     /*
