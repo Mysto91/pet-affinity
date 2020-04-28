@@ -52,6 +52,11 @@ class Pet
      */
     private $typePet;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $createdAt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +142,18 @@ class Pet
     public function setTypePet(?TypePet $typePet): self
     {
         $this->typePet = $typePet;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
