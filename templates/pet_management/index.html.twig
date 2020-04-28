@@ -5,7 +5,8 @@
 {% block body %}
 
 <div class="example-wrapper">
-    <div class="card-deck">
+    <h1>Pets</h1>
+    <div class="card-columns">
         {% for pet in pets %}
             {% include 'pet_management/pet.html.twig' %}
         {% endfor %}

@@ -20,7 +20,7 @@ class PetManagementController extends AbstractController
         $pets_array = $paginator->paginate(
             $repo->findAllQuery(),
             $request->query->getInt('page', 1),
-            4
+            10
         );
 
         return $this->render('pet_management/index.html.twig', [
