@@ -54,9 +54,14 @@ class PetManagementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$pet->exist()) {
                 $pet->setCreatedAt(new \DateTime());
+                $message = 'Pet created';
+            } else {
+                $message = 'Pet updated';
             }
             $manager->persist($pet);
             $manager->flush();
+
+            $this->addFlash('success', $message);
 
             return $this->redirectToRoute('pet_management');
         }

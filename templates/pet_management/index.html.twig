@@ -24,6 +24,12 @@
     </div>
 </div>
 
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success" role="alert">
+        {{message}}
+    </div>
+{% endfor %}
+
 <div class="example-wrapper">
     <h1>Pets</h1>
     <div class="card-columns">
