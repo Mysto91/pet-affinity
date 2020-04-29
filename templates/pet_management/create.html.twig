@@ -2,12 +2,24 @@
 
 {% form_theme formPet 'bootstrap_4_layout.html.twig' %}
 
-{% block title %}Create pet{% endblock %}
+{% block title %}
+    {% if editMode %}
+        Update pet
+    {% else %}
+        Create pet
+    {% endif %}
+{% endblock %}
 
 {% block body %}
 
     <div class = "example-wrapper">
-        <h1>Create pet</h1>
+        <h1>
+            {% if editMode %}
+                Update pet
+            {% else %}
+                Create pet
+            {% endif %}
+        </h1>
 
         {{form_start(formPet)}}
 
@@ -42,6 +54,12 @@
         )}}
 
         {{form_row(formPet.age,
+            {'attr' : {
+                'placeholder': ''
+            }}
+        )}}
+
+        {{form_row(formPet.imageFile,
             {'attr' : {
                 'placeholder': ''
             }}

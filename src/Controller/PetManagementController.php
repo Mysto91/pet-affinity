@@ -65,7 +65,7 @@ class PetManagementController extends AbstractController
             'pet_management/create.html.twig',
             [
                 'formPet' => $form->createView(),
-                'editMode' => $pet->getId() !== null,
+                'editMode' => $pet->exist()
             ]
         );
 

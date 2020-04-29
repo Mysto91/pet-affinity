@@ -1,5 +1,10 @@
 <div class="card border-primary mb-3" style="max-width: 20rem;">
   <div class="card-header">{{ pet.name }}</div>
+    {% if pet.fileName %}
+      <img src="{{ vich_uploader_asset(pet, 'imageFile') | imagine_filter('thumb') }}" alt="card-img-top" class="thumb">
+    {% else %}
+      <img src="/images/pets/empty.jpg" alt="card-img-top" class="thumb">
+    {% endif %}
   <div class="card-body">
     <h4 class="card-title">{{ pet.typePet.name }}</h4>
     <p class="card-text">{{ pet.description}} measures {{ pet.size}} cm and is {{ pet.age}} years old</p>

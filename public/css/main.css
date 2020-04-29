@@ -1,10 +1,26 @@
-.image-strip{
-    width: 50%;
-    height: 300px;
+.image-strip {
+  width: 50%;
+  height: 300px;
 }
 
-.center{
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.example-wrapper {
+  margin: 1em auto;
+  max-width: 1000px;
+  width: 95%;
+  font: 18px/1.5 sans-serif;
+}
+.example-wrapper code {
+  background: #f5f5f5;
+  padding: 2px 6px;
+}
+
+.thumb {
+  width: 100%;
+  height: auto;
 }
