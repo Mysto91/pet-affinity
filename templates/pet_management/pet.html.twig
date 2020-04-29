@@ -1,5 +1,9 @@
 <div class="card border-primary mb-3" style="max-width: 20rem;">
-  <div class="card-header">{{ pet.name }}</div>
+  <div class="card-header">
+    <a href="{{ path('pet_edit', {'id': pet.id}) }}">
+        {{ pet.name }}
+    </a>
+  </div>
     {% if pet.fileName %}
       <img src="{{ vich_uploader_asset(pet, 'imageFile') | imagine_filter('thumb') }}" alt="card-img-top" class="thumb">
     {% else %}
