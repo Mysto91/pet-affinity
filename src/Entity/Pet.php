@@ -22,6 +22,12 @@ class Pet
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *          min="3",
+     *          minMessage="Provide a name with at least three character",
+     *          max="50",
+     *          maxMessage="Field too long"
+     * )
      */
     private $Name;
 
@@ -42,11 +48,13 @@ class Pet
 
     /**
      * @ORM\Column(type="float", nullable=true)
+     * @Assert\Range(min="1", max="1000")
      */
     private $size;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(min="0", max="50")
      */
     private $age;
 
