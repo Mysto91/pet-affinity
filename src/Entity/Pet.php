@@ -6,6 +6,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PetRepository")
@@ -17,6 +18,7 @@ class Pet
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("pet:read")
      */
     private $id;
 
@@ -28,50 +30,63 @@ class Pet
      *          max="50",
      *          maxMessage="Field too long"
      * )
+     * @Assert\NotBlank(message="Name is mandatory")
+     * @Groups("pet:read")
      */
     private $Name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("pet:read")
      */
     private $Description;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("pet:read")
+     * @Assert\NotBlank(message="Gender is mandatory")
      */
     private $gender;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("pet:read")
+     * @Assert\NotBlank(message="Color is mandatory")
      */
     private $color;
 
     /**
      * @ORM\Column(type="float", nullable=true)
      * @Assert\Range(min="1", max="1000")
+     * @Groups("pet:read")
      */
     private $size;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Range(min="0", max="50")
+     * @Groups("pet:read")
      */
     private $age;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\TypePet", inversedBy="pets")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("pet:read")
+     * @Assert\NotBlank(message="Type is mandatory")
      */
     private $typePet;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Groups("pet:read")
      */
     private $createdAt;
 
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("pet:read")
      */
     private $fileName;
 
@@ -86,6 +101,7 @@ class Pet
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Groups("pet:read")
      */
     private $updatedAt;
 

@@ -47,4 +47,14 @@ class TypePetRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByName($name): ?TypePet
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.name = :name')
+            ->setParameter('name', $name)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }
