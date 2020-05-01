@@ -45,6 +45,7 @@ class Pet
      * @ORM\Column(type="string", length=255)
      * @Groups("pet:read")
      * @Assert\NotBlank(message="Gender is mandatory")
+     * @App\Validator\Gender()
      */
     private $gender;
 
