@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -109,5 +110,10 @@ class TypePet
         }
 
         return $this;
+    }
+
+    public function isEmpty()
+    {
+        return $this->id === null;
     }
 }

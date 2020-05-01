@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Pet;
+use App\Entity\TypePet;
 use App\Repository\PetRepository;
 use App\Repository\TypePetRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -38,20 +39,23 @@ class ApiPetController extends AbstractController
             $pet = $serializer->deserialize($params, Pet::class, 'json');
             $pet->setCreatedAt(new \DateTime());
 
-            if (!empty($paramObject->type)) {
-                $pet->setTypePet($typeRepo->findByName($paramObject->type));
-            }
+            $typePet = new TypePet();
+
+            if (!empty($typeRepo->findByName($paramObject->type)))
+                $typePet = $typeRepo->findByName($paramObject->type);
+
+            $pet->setTypePet($typePet);
 
             $errors = $validator->validate($pet);
 
             if (count($errors) > 0) {
                 return $this->json($errors, 400);
+            } else {
+                $em->persist($pet);
+                $em->flush();
+
+                return $this->json($pet, 201, [], ['groups' => 'pet:read']);
             }
-
-            $em->persist($pet);
-            $em->flush();
-
-            return $this->json($pet, 201, [], ['groups' => 'pet:read']);
         } catch (NotEncodableValueException $e) {
             return $this->json([
                 'status' => 400,
