@@ -7,6 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -14,7 +15,30 @@ use ApiPlatform\Core\Annotation\ApiResource;
  *  fields={"email"},
  *  message= "Email déjà utilisé"
  * )
- * @ApiResource
+ * @ApiResource(
+ *      normalizationContext={
+ *          "groups"={
+ *              "user:read"
+ *          }
+ *      },
+ * 
+ *      denormalizationContext={
+ *          "groups"={
+ *              "user:write"
+ *          }
+ *      },
+ * 
+ *      collectionOperations={
+ *      "get"={},
+ *      "post"={},
+ *      },
+ * 
+ *      itemOperations={
+ *      "get"={},
+ *      "put"={},
+ *      "delete"={},
+ *      }
+ * )
  */
 class User implements UserInterface, \Serializable
 {
@@ -22,11 +46,13 @@ class User implements UserInterface, \Serializable
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"user:read", "user:write"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Groups({"user:read", "user:write"})
      */
     private $username;
 
@@ -49,6 +75,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=50)
      * @Assert\Email()
+     * @Groups({"user:read", "user:write"})
      */
     private $email;
 
