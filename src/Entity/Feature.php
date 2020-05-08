@@ -31,6 +31,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *      "get"={},
  *      "put"={},
  *      "delete"={},
+ *      "patch"={},
  *      }
  * )
  */

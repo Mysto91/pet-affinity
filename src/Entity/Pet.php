@@ -8,10 +8,36 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 use App\Validator as AssertCustom;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PetRepository")
  * @Vich\Uploadable()
+  * @ApiResource(
+ *      normalizationContext={
+ *          "groups"={
+ *              "pet:read"
+ *          }
+ *      },
+ * 
+ *      denormalizationContext={
+ *          "groups"={
+ *              "pet:write"
+ *          }
+ *      },
+ * 
+ *      collectionOperations={
+ *      "get"={},
+ *      "post"={},
+ *      },
+ * 
+ *      itemOperations={
+ *      "get"={},
+ *      "put"={},
+ *      "delete"={},
+ *      "patch"={},
+ *      }
+ * )
  */
 class Pet
 {
@@ -19,7 +45,7 @@ class Pet
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("pet:read")
+     * @Groups({"pet:read"})
      */
     private $id;
 
@@ -32,19 +58,19 @@ class Pet
      *          maxMessage="Field too long"
      * )
      * @Assert\NotBlank(message="Name is mandatory")
-     * @Groups("pet:read")
+     * @Groups({"pet:read", "pet:write"})
      */
     private $Name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("pet:read")
+     * @Groups({"pet:read", "pet:write"})
      */
     private $Description;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("pet:read")
+     * @Groups({"pet:read", "pet:write"})
      * @Assert\NotBlank(message="Gender is mandatory")
      * @AssertCustom\Gender()
      */
@@ -52,7 +78,7 @@ class Pet
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("pet:read")
+     * @Groups({"pet:read", "pet:write"})
      * @Assert\NotBlank(message="Color is mandatory")
      */
     private $color;
@@ -60,21 +86,21 @@ class Pet
     /**
      * @ORM\Column(type="float", nullable=true)
      * @Assert\Range(min="1", max="1000")
-     * @Groups("pet:read")
+     * @Groups({"pet:read", "pet:write"})
      */
     private $size;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Range(min="0", max="50")
-     * @Groups("pet:read")
+     * @Groups({"pet:read", "pet:write"})
      */
     private $age;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\TypePet", inversedBy="pets")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups("pet:read")
+     * @Groups({"pet:read", "pet:write"})
      * @AssertCustom\TypePet()
      */
     private $typePet;
@@ -106,6 +132,11 @@ class Pet
      * @Groups("pet:read")
      */
     private $updatedAt;
+
+    /**
+     * @Groups({"pet:read", "pet:write"})
+     */
+    private $type;
 
     public function getId(): ?int
     {
@@ -273,6 +304,26 @@ class Pet
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of type
+     */ 
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set the value of type
+     *
+     * @return  self
+     */ 
+    public function setType($type)
+    {
+        $this->type = $type;
 
         return $this;
     }
