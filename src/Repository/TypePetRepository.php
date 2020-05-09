@@ -57,4 +57,19 @@ class TypePetRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    public function findById($id): ?TypePet
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
+    public function findNameById($id): ?string
+    {
+        return $this->findById($id)->getName();
+    }
 }

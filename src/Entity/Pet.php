@@ -63,6 +63,11 @@ class Pet
     private $Name;
 
     /**
+     * @Groups({"pet:read", "pet:write"})
+     */
+    private $type;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"pet:read", "pet:write"})
      */
@@ -100,7 +105,6 @@ class Pet
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\TypePet", inversedBy="pets")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"pet:read", "pet:write"})
      * @AssertCustom\TypePet()
      */
     private $typePet;
@@ -110,6 +114,12 @@ class Pet
      * @Groups("pet:read")
      */
     private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @Groups("pet:read")
+     */
+    private $updatedAt;
 
     /**
      * @var string|null
@@ -127,16 +137,7 @@ class Pet
      */
     private $imageFile;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     * @Groups("pet:read")
-     */
-    private $updatedAt;
 
-    /**
-     * @Groups({"pet:read", "pet:write"})
-     */
-    private $type;
 
     public function getId(): ?int
     {

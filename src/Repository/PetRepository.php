@@ -62,6 +62,16 @@ class PetRepository extends ServiceEntityRepository
         return $query->getQuery();
     }
 
+    public function findById($id): ?Pet
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
     /*
     public function findOneBySomeField($value): ?Pet
     {
