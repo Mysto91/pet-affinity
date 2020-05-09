@@ -312,7 +312,7 @@ class Pet
     /**
      * Get the value of type
      */ 
-    public function getType()
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -322,7 +322,7 @@ class Pet
      *
      * @return  self
      */ 
-    public function setType($type)
+    public function setType($type): self
     {
         $this->type = $type;
 
