@@ -42,6 +42,7 @@
         "phpstan/phpstan": "^0.12.23",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
+        "symfony/phpunit-bridge": "^5.1",
         "symfony/test-pack": "*"
     },
     "config": {
