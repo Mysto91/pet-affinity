@@ -33,8 +33,11 @@ final class PetItemProvider implements ItemDataProviderInterface, SerializerAwar
     public function getItem(string $resourceClass, $id, string $operationName = null, array $context = []): ?Pet
     {
         $pet = $this->repoPet->findById($id);
-        $pet = $this->setPetType($pet);
-        
+
+        if (!empty($pet)) {
+            $pet = $this->setPetType($pet);
+        }
+
         return $pet;
     }
 
