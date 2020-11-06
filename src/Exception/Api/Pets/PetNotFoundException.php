@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exception;
+namespace App\Exception\Api\Pets;
 
 final class PetNotFoundException extends \Exception
 {
