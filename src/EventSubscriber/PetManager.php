@@ -31,13 +31,13 @@ final class PetManager implements EventSubscriberInterface
             return;
         }
 
-        $message = [
+        $response = new Response();
+
+        $response->setContent(json_encode([
             'code' => 404,
             'description' => 'The pet does not exist'
-        ];
-
-        $response = new Response();
-        $response->setContent(json_encode($message));
+            ])
+        );
 
         if ($exception instanceof HttpExceptionInterface) {
             $response->setStatusCode($exception->getStatusCode());
