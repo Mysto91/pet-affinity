@@ -27,7 +27,7 @@ final class PetManager implements EventSubscriberInterface
         $exception = $event->getThrowable();
         $request = $event->getRequest();
 
-        if ($request->get('_api_resource_class') != Pet::class) {
+        if ($request->get('_api_resource_class') != Pet::class || $exception->getStatusCode() != 404) {
             return;
         }
 
