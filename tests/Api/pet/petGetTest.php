@@ -2,16 +2,23 @@
 
 namespace App\Api\Pet\Tests;
 
-use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Response;
+use App\Tests\Api\ApiTestCaseSimple;
 
-class petGetTest extends ApiTestCase
+class petGetTest extends ApiTestCaseSimple
 {
+    public $uri = '/apip/pets';
+
+    public function getUrl($id)
+    {
+        return $this->uri . '/' . $id;
+    }
+
     public function testIfGetByIdWork()
     {
         $petId = 1;
 
-        $response = static::createClient()->request('GET', '/apip/pets/' . $petId)->toArray();
+        $response = self::get($this->getUrl($petId))->toArray();
         
         $this->assertEquals($petId, $response['id']);
         $this->assertResponseStatusCodeSame(200);
@@ -21,7 +28,7 @@ class petGetTest extends ApiTestCase
     {
         $petId = '999999';
 
-        $response = static::createClient()->request('GET', '/apip/pets/' . $petId);
+        $response = self::get($this->getUrl($petId));
 
         $message = json_decode($response->getContent(false), true);
 
